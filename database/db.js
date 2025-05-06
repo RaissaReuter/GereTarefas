@@ -1,4 +1,4 @@
-// ARQUIVO: database/db.js
+
 const mongoose = require("mongoose");
 
 const connectToDb = () => {
