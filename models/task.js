@@ -1,19 +1,21 @@
-// ARQUIVO: models/tasks.js
-const mongoose = require("mongoose");
+// models/Task.js
+import mongoose from 'mongoose';
 
 const taskSchema = new mongoose.Schema({
   task: {
     type: String,
     required: true,
   },
-  check: {
+  completed: {
     type: Boolean,
     default: false,
   },
-  date: {
+  createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
 });
 
-module.exports = mongoose.model("Task", taskSchema);
+const Task = mongoose.model('Task', taskSchema);
+
+export default Task;
