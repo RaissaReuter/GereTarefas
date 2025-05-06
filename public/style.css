@@ -1,0 +1,242 @@
+/* ARQUIVO: public/style.css */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css');
+
+body {
+  background-color: #202024;
+  color: #fff;
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #005290;
+  padding: 2rem;
+  margin: 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+}
+
+header h1 {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.task-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  outline: none;
+  background-color: #333;
+  color: #eee;
+}
+
+button {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#addButton {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button#addButton:hover {
+  background-color: #0056b3;
+}
+
+button#updateButton {
+  background-color: #28a745;
+  color: #fff;
+}
+
+button#updateButton:hover {
+  background-color: #1e7e34;
+}
+
+#tasks {
+  margin: 1rem;
+  width: 80%;
+  max-width: 600px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: #333;
+  color: #eee;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ul li.check-true {
+  background-color: #444;
+  text-decoration: line-through;
+  color: #999;
+}
+
+ul li div:first-child {
+  flex-grow: 1;
+}
+
+ul li div:first-child a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul li div:last-child a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+ul li div:last-child a.btnUpdate {
+  color: #ffc107;
+}
+
+ul li div:last-child a.btnDelete {
+  color: #dc3545;
+}
+
+.message {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 600px;
+}
+
+.message.message-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.message-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.message span#close-message {
+  cursor: pointer;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+#modal #card {
+  background-color: #444;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+#modal #head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#modal #head h2 {
+  color: #fff;
+  margin: 0;
+}
+
+#modal #head a#close {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#modal hr {
+  border-top: 1px solid #666;
+  margin-bottom: 1rem;
+}
+
+#modal p {
+  color: #eee;
+  margin-bottom: 1.5rem;
+}
+
+#modal #btns {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#modal #btns a {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+#modal #btns a#btnNot {
+  background-color: #6c757d;
+}
+
+#modal #btns a#btnNot:hover {
+  background-color: #545b62;
+}
+
+#modal #btns a#btnYes {
+  background-color: #dc3545;
+}
+
+#modal #btns a#btnYes:hover {
+  background-color: #c82333;
+}
