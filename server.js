@@ -1,46 +1,27 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import Task from './models/Task.js'; // Importe o modelo Task
+import 'dotenv/config'; // Carrega as variáveis do arquivo .env para process.envrequire('dotenv').config(); // Carrega as variáveis do arquivo .env para process.env
+const express = require("express");
+const path = require("path");
+const session = require("express-session"); 
+const routes = require("./routes/routes");
+const conectToDb = require("./database/db");
 
+conectToDb();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Conecte ao MongoDB (substitua pela sua URI)
-mongoose.connect('mongodb+srv://raissareuter:<sua_senha>@todoofc.ewynvub.mongodb.net/seu_banco_de_dados?retryWrites=true&w=majority&appName=TodoOfc', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('Conectado ao MongoDB'))
-.catch(err => console.error('Erro ao conectar ao MongoDB:', err));
-
-// Middleware para processar dados JSON no corpo das requisições
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Rota para listar todas as tarefas
-app.get('/tasks', async (req, res) => {
-  try {
-    const tasks = await Task.find();
-    res.json(tasks); // Envia as tarefas como JSON
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar tarefas' });
-  }
-});
+app.use(session({                       
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
 
-// Rota para adicionar uma nova tarefa
-app.post('/tasks', async (req, res) => {
-  const { task } = req.body;
-  if (!task) {
-    return res.status(400).json({ error: 'O campo "task" é obrigatório' });
-  }
-  const newTask = new Task({ task });
-  try {
-    const savedTask = await newTask.save();
-    res.status(201).json(savedTask); // Envia a nova tarefa criada
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar tarefa' });
-  }
-});
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
+app.use(routes);                
 
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
-});
+app.listen(port, () =>
+  console.log(`Servidor rodando em http://localhost:${port}`)
+);
